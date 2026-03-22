@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Copiabel.ai — Autonomous Copy Trading</title>
+  <meta name="description" content="AI-Powered Autonomous Copy Trading Syndicate on Ethereum Sepolia">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <div class="app">
+
+    <!-- ═══ FLOATING NAVBAR ═══ -->
+    <nav class="navbar">
+      <div class="nav-left">
+        <div class="logo-group" style="display: flex; align-items: center; gap: 10px;">
+          <img src="logo.png" alt="Copiebel AI Logo" width="32" height="32" style="object-fit: contain;">
+          <span class="logo-text" style="font-weight: 700; font-size: 1.25rem; letter-spacing: -0.02em;">Copiabel.ai</span>
+        </div>
+        <div class="nav-links">
+          <button class="nav-link active" id="navHome">Home</button>
+          <button class="nav-link" id="navCopytrade">Copytrade</button>
+          <button class="nav-link" id="navVault">Vault</button>
+        </div>
+      </div>
+
+      <div class="nav-right">
+        <!-- Disconnected State -->
+        <button class="btn btn-connect-nav" id="btnNavConnect">
+          Connect Wallet
+        </button>
+
+        <!-- Connected State -->
+        <div class="user-connected-badge" id="navUserBadge" style="display:none;">
+          <span class="mono-addr" id="navUserAddr">0x...</span>
+          <button class="btn-disconnect" id="btnNavDisconnect" title="Disconnect">X</button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ═══ HOME SECTION ═══ -->
+    <div id="homeSection" class="section-container">
+      <div class="hero">
+        <div class="hero-badge"
+          style="margin-bottom: 24px; display: inline-block; padding: 6px 16px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 100px; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--accent-3);">
+          Tether Hackathon Galáctica: WDK Edition</div>
+        <h1 class="hero-title">
+          Autonomous. Self-Custodial. <br>
+          <span class="hero-highlight">AI-Powered Copy Trading.</span>
+        </h1>
+        <p class="hero-desc"
+          style="max-width: 700px; margin: 0 auto 40px auto; color: var(--text-secondary); line-height: 1.6; font-size: 1.05rem;">
+          WDK Copy Trade is a fully decentralized, self-custodial pipeline powered by multi-agent AI. We leverage the
+          Web3 Developer Kit (WDK), advanced LLMs, and ERC-4337 Account Abstraction to seamlessly mirror elite on-chain
+          strategies. Your keys, your rules.
+        </p>
+        <div class="hero-actions">
+          <button class="btn btn-hero-primary" onclick="showTab('copytrade')">Launch App →</button>
+          <a href="https://github.com/openclaw/openclaw" target="_blank" class="btn btn-hero-secondary">GitHub Repo</a>
+        </div>
+      </div>
+
+      <!-- Architecture Flow -->
+      <div style="margin: 80px auto; max-width: 1200px; text-align: center;">
+        <h2 style="font-size: 2rem; margin-bottom: 12px; font-weight: 500;">Autonomous Copy Trading Flow</h2>
+        <p style="color: var(--text-muted); margin-bottom: 48px;">How the system achieves fully decentralized, secure
+          copy trading on Sepolia.</p>
+
+        <div class="arch-grid"
+          style="display: grid; grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr; align-items: center; gap: 16px; text-align: left;">
+          <div class="arch-card"
+            style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 24px; border-radius: 12px; height: 100%; transition: transform 0.2s, background 0.2s;"
+            onmouseover="this.style.background='rgba(255,255,255,0.04)'; this.style.transform='translateY(-2px)'"
+            onmouseout="this.style.background='rgba(255,255,255,0.02)'; this.style.transform='translateY(0)'">
+            <div
+              style="color: var(--accent-3); font-size: 0.75rem; font-weight: 600; text-transform: uppercase; margin-bottom: 12px; letter-spacing: 0.05em;">
+              Step 1</div>
+            <h3 style="font-size: 1.1rem; margin-bottom: 10px; font-weight: 600;">Target Surveillance</h3>
+            <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6;">You input a target wallet.
+              Our Monitor tracks their live mempool transactions, capturing swap logic instantly.</p>
+          </div>
+
+          <div class="flow-arrow" style="color: rgba(255,255,255,0.15); font-size: 1.5rem;">&#8594;</div>
+
+          <div class="arch-card"
+            style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 24px; border-radius: 12px; height: 100%; transition: transform 0.2s, background 0.2s;"
+            onmouseover="this.style.background='rgba(255,255,255,0.04)'; this.style.transform='translateY(-2px)'"
+            onmouseout="this.style.background='rgba(255,255,255,0.02)'; this.style.transform='translateY(0)'">
+            <div
+              style="color: var(--accent-3); font-size: 0.75rem; font-weight: 600; text-transform: uppercase; margin-bottom: 12px; letter-spacing: 0.05em;">
+              Step 2</div>
+            <h3 style="font-size: 1.1rem; margin-bottom: 10px; font-weight: 600;">Trade Sizing</h3>
+            <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6;">The Strategy Agent normalizes
+              the exact trade and proportionally sizes the copy swap relative to your balance.</p>
+          </div>
+
+          <div class="flow-arrow" style="color: rgba(255,255,255,0.15); font-size: 1.5rem;">&#8594;</div>
+
+          <div class="arch-card"
+            style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 24px; border-radius: 12px; height: 100%; transition: transform 0.2s, background 0.2s;"
+            onmouseover="this.style.background='rgba(255,255,255,0.04)'; this.style.transform='translateY(-2px)'"
+            onmouseout="this.style.background='rgba(255,255,255,0.02)'; this.style.transform='translateY(0)'">
+            <div
+              style="color: var(--accent-3); font-size: 0.75rem; font-weight: 600; text-transform: uppercase; margin-bottom: 12px; letter-spacing: 0.05em;">
+              Step 3</div>
+            <h3 style="font-size: 1.1rem; margin-bottom: 10px; font-weight: 600;">AI Validation</h3>
+            <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6;">Before blindly mirroring, the
+              Risk Agent queries blockchain liquidity and simulates strict slippage bounds.</p>
+          </div>
+
+          <div class="flow-arrow" style="color: rgba(255,255,255,0.15); font-size: 1.5rem;">&#8594;</div>
+
+          <div class="arch-card"
+            style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 24px; border-radius: 12px; height: 100%; transition: transform 0.2s, background 0.2s;"
+            onmouseover="this.style.background='rgba(255,255,255,0.04)'; this.style.transform='translateY(-2px)'"
+            onmouseout="this.style.background='rgba(255,255,255,0.02)'; this.style.transform='translateY(0)'">
+            <div
+              style="color: var(--accent-3); font-size: 0.75rem; font-weight: 600; text-transform: uppercase; margin-bottom: 12px; letter-spacing: 0.05em;">
+              Step 4</div>
+            <h3 style="font-size: 1.1rem; margin-bottom: 10px; font-weight: 600;">Auto Execution</h3>
+            <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6;">The Execution Agent mirrors
+              the swap perfectly on Uniswap V3 using your WDK wallet and an ERC-4337 Paymaster.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- AI Agent Swarm -->
+      <div style="margin: 80px auto; max-width: 1100px; text-align: center;">
+        <h2 style="font-size: 2rem; margin-bottom: 12px; font-weight: 500;">Multi-Agent AI Swarm</h2>
+        <p style="color: var(--text-muted); margin-bottom: 48px;">Four dedicated Large Language Models reasoning in
+          parallel.</p>
+
+        <div class="arch-grid"
+          style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; text-align: left;">
+          <div class="arch-card"
+            style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 24px; border-radius: 12px; border-top: 3px solid #60a5fa;">
+            <h3 style="font-size: 1.1rem; margin-bottom: 10px; font-weight: 600;">Monitor Agent</h3>
+            <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6;">Synchronizes with the
+              Ethereum Mempool via blockchain streams, capturing confirmed swap signatures instantly.</p>
+          </div>
+
+          <div class="arch-card"
+            style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 24px; border-radius: 12px; border-top: 3px solid var(--accent-3);">
+            <h3 style="font-size: 1.1rem; margin-bottom: 10px; font-weight: 600;">Strategy Agent</h3>
+            <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6;">Normalizes the incoming trade
+              block parameters. Determines exact pair mapping and absolute sizing limits.</p>
+          </div>
+
+          <div class="arch-card"
+            style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 24px; border-radius: 12px; border-top: 3px solid var(--danger);">
+            <h3 style="font-size: 1.1rem; margin-bottom: 10px; font-weight: 600;">Risk Agent</h3>
+            <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6;">Analyzes pool liquidity and
+              actively sets slippage tolerances using dynamic Model Context Protocol constraints.</p>
+          </div>
+
+          <div class="arch-card"
+            style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 24px; border-radius: 12px; border-top: 3px solid var(--accent-2);">
+            <h3 style="font-size: 1.1rem; margin-bottom: 10px; font-weight: 600;">Execution Agent</h3>
+            <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6;">Compiles the verified
+              parameters directly into an ERC-4337 smart account transaction payload for dispatch.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hackathon Integrations -->
+      <div style="margin: 80px auto; max-width: 800px; padding-bottom: 60px;">
+        <h2 style="font-size: 1.5rem; text-align: center; margin-bottom: 32px; font-weight: 500;">Hackathon Integrations
+        </h2>
+
+        <div style="display: flex; flex-direction: column; gap: 16px;">
+          <div
+            style="display: flex; align-items: flex-start; gap: 20px; background: rgba(255,255,255,0.01); padding: 24px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.03);">
+            <div
+              style="padding: 12px; background: rgba(52, 211, 153, 0.1); border-radius: 8px; color: var(--accent-2); font-weight: bold; width: 68px; text-align: center; font-size: 0.9rem;">
+              WDK</div>
+            <div>
+              <h4 style="font-size: 1.05rem; margin-bottom: 6px; font-weight: 600;">Web3 Developer Kit</h4>
+              <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.6;">Powers the secure, invisible
+                onboarding mechanism. Target execution limits and deterministic key operations are safely handled within
+                private self-custodial bounds.</p>
+            </div>
+          </div>
+
+          <div
+            style="display: flex; align-items: flex-start; gap: 20px; background: rgba(255,255,255,0.01); padding: 24px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.03);">
+            <div
+              style="padding: 12px; background: rgba(139, 92, 246, 0.1); border-radius: 8px; color: var(--accent-3); font-weight: bold; width: 68px; text-align: center; font-size: 0.9rem;">
+              AI</div>
+            <div>
+              <h4 style="font-size: 1.05rem; margin-bottom: 6px; font-weight: 600;">Large Language Model Agents</h4>
+              <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.6;">We mapped EthersJS tools into
+                the Model Context Protocol (MCP), allowing AI routines to natively pull liquidity maps, verify smart
+                contracts, and calculate sizing safely.</p>
+            </div>
+          </div>
+
+          <div
+            style="display: flex; align-items: flex-start; gap: 20px; background: rgba(255,255,255,0.01); padding: 24px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.03);">
+            <div
+              style="padding: 12px; background: rgba(59, 130, 246, 0.1); border-radius: 8px; color: #60a5fa; font-weight: bold; width: 68px; text-align: center; font-size: 0.9rem;">
+              4337</div>
+            <div>
+              <h4 style="font-size: 1.05rem; margin-bottom: 6px; font-weight: 600;">Account Abstraction</h4>
+              <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.6;">All target swaps are mapped
+                through an active Paymaster. This sponsors backend Ethereum execution gas utilizing local USDt or ERC-20
+                balances for zero-friction UX.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ COPYTRADE DASHBOARD SECTION ═══ -->
+    <div id="copytradeSection" class="section-container" style="display:none;">
+
+      <!-- Connect Prompt (If not connected) -->
+      <div id="copytradeConnectPrompt" class="connect-prompt" style="display:none;">
+        <div class="connect-card">
+          <h2 class="connect-title">Vault Access Required</h2>
+          <p class="connect-desc">Connect your MetaMask wallet to initialize your secure WDK environment and begin copy
+            trading.</p>
+          <button class="btn btn-connect" id="btnConnectPrompt">
+            Connect MetaMask
+          </button>
+          <p class="connect-hint" id="connectError" style="display:none; color: var(--danger);"></p>
+          <p class="connect-hint">No MetaMask? <a href="#" id="btnSkipConnect" style="color: var(--accent-3);">Skip to
+              Demo Mode</a></p>
+        </div>
+      </div>
+
+      <!-- Main Trading Interface (If connected) -->
+      <div id="copytradeInterface" style="display:none;">
+
+        <header class="dashboard-header">
+          <div class="header-status">
+            <div class="status-badge" id="engineStatus">
+              <span class="status-dot"></span>
+              <span>System Idle</span>
+            </div>
+            <div class="blockchain-info" id="blockchainInfo">
+              <span class="chain-badge">Sepolia Testnet</span>
+            </div>
+          </div>
+        </header>
+
+        <!-- Main Grid -->
+        <main class="main-grid" style="grid-template-columns: 1fr;">
+
+          <!-- Start Copy Trade -->
+          <section class="card card-primary" id="sectionStartCopyTrade">
+            <div class="card-header">
+              <h2>Start Copy Trade</h2>
+            </div>
+            <div class="card-body">
+              <p class="hint">Input a Sepolia address to begin live surveillance and trade mirroring.</p>
+              <div class="form-row">
+                <input type="text" id="followAddress" placeholder="0x... (Target Address)" class="input mono-input">
+                <input type="text" id="followLabel" placeholder="Label (optional)" class="input"
+                  style="max-width: 120px;">
+                <button class="btn btn-primary" id="btnFollow">Follow</button>
+              </div>
+              <div id="followResult"></div>
+              <div id="followList" style="margin-top: 8px;"></div>
+            </div>
+          </section>
+
+          <!-- Current Copy Trade (Initially Hidden) -->
+          <section class="card" id="sectionCurrentCopyTrade" style="display:none;">
+            <div class="card-header">
+              <h2>Current Copy Trade</h2>
+              <div id="monitorIndicator" class="monitor-indicator"></div>
+            </div>
+            <div class="card-body">
+              <div id="monitorStatus">
+                <div class="empty-state">Awaiting target acquisition.</div>
+              </div>
+            </div>
+          </section>
+
+          <!-- AI Agents (Initially Hidden) -->
+          <section class="card card-tall" id="sectionAIAgents" style="display:none;">
+            <div class="card-header">
+              <h2>AI Agents</h2>
+              <button class="btn btn-sm" id="btnClearLogs">Clear</button>
+            </div>
+            <div class="card-body">
+              <div class="reasoning-log" id="reasoningLog">
+                <div class="empty-state">System idle. Ready for analysis.</div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Copy Trade History -->
+          <section class="card" id="sectionTradeHistory">
+            <div class="card-header">
+              <h2>Copy Trade History</h2>
+              <button class="btn btn-sm" id="btnRefreshHistory">Sync</button>
+            </div>
+            <div class="card-body">
+              <div class="trade-history" id="tradeHistory">
+                <div class="empty-state">Ledger empty.</div>
+              </div>
+            </div>
+          </section>
+
+        </main>
+      </div>
+
+    </div>
+
+    <!-- ═══ WDK VAULT SECTION ═══ -->
+    <div id="vaultSection" class="section-container" style="display:none;">
+      <div style="padding: 16px 0 24px 0; text-align: left;">
+        <h1 style="font-size: 1.8rem; font-weight: 700; margin-bottom: 4px; color: #fff;">My WDK Vault</h1>
+        <p style="max-width: 600px; margin: 0; font-size: 0.85rem; color: #fff;">Manage your self-custodial Tether WDK
+          ERC-4337 Smart Account and portfolio allocations.</p>
+      </div>
+
+      <div class="main-grid">
+        <section class="card">
+          <div class="card-header" style="padding: 16px 20px;">
+            <h2 style="font-size: 1.1rem;">Portfolio Balances</h2>
+          </div>
+          <div class="card-body" style="padding: 12px 20px 20px 20px;">
+            <div id="vaultPortfolioInfo">
+              <div class="empty-state">Loading portfolio status...</div>
+            </div>
+            <div class="onboard-fund" id="vaultFundWarning" style="display:none; margin-top: 24px;">
+              <p><strong>Vault Unfunded</strong>: For Sepolia ETH</p>
+              <div class="faucet-links">
+                <a href="https://cloud.google.com/application/web3/faucet/ethereum/sepolia" target="_blank"
+                  class="btn btn-sm">Google Faucet</a>
+                <a href="https://sepoliafaucet.com" target="_blank" class="btn btn-sm">Alchemy Faucet</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Right Column: Account Details & Actions -->
+        <div class="side-col" style="display: flex; flex-direction: column; gap: 24px;">
+          <section class="card">
+            <div class="card-header" style="padding: 16px 20px;">
+              <h2 style="font-size: 1.1rem;">Smart Account</h2>
+            </div>
+            <div class="card-body" style="padding: 20px;">
+              <div style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 4px;">Contract Address</div>
+              <div
+                style="font-family: monospace; font-size: 0.9rem; color: #fff; margin-bottom: 20px; display: flex; align-items: center; gap: 8px;">
+                <span id="vaultAddressDisplay" style="word-break: break-all;">0x...</span>
+                <button onclick="copyVaultAddress(this)"
+                  style="background: rgba(255,255,255,0.1); border: none; border-radius: 4px; padding: 4px 8px; color: #fff; cursor: pointer; font-size: 0.75rem; transition: background 0.2s;"
+                  onmouseover="this.style.background='rgba(255,255,255,0.2)'"
+                  onmouseout="this.style.background='rgba(255,255,255,0.1)'" title="Copy Address">Copy</button>
+              </div>
+
+              <div style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 4px;">Network Status</div>
+              <div
+                style="font-size: 0.9rem; color: #fff; margin-bottom: 20px; display: flex; align-items: center; gap: 8px;">
+                <span class="status-dot"
+                  style="background: var(--accent-2); box-shadow: 0 0 8px var(--accent-2);"></span> Sepolia Testnet
+              </div>
+
+              <div style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 4px;">Gas Sponsorship</div>
+              <div style="font-size: 0.9rem; color: var(--accent-2);">Active (WDK Paymaster)</div>
+            </div>
+          </section>
+
+          <section class="card">
+            <div class="card-header" style="padding: 16px 20px;">
+              <h2 style="font-size: 1.1rem;">Quick Actions</h2>
+            </div>
+            <div class="card-body" style="padding: 20px; display: grid; gap: 12px;">
+              <button class="btn"
+                style="width: 100%; border: 1px solid rgba(255,255,255,0.1); background: transparent; color: #fff; transition: background 0.2s;">Deposit
+                Funds</button>
+              <button class="btn"
+                style="width: 100%; border: 1px solid rgba(255,255,255,0.1); background: transparent; color: #fff; transition: background 0.2s;">Withdraw</button>
+              <button class="btn"
+                style="width: 100%; border: 1px solid rgba(255,255,255,0.1); background: transparent; color: #fff; transition: background 0.2s;">Swap
+                Tokens</button>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+
+</html>

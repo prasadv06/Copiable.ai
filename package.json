@@ -1,0 +1,33 @@
+{
+  "name": "wdk-copy-trade-syndicate",
+  "version": "1.0.0",
+  "description": "Autonomous Copy Trading Syndicate — AI-driven copy trading with Tether WDK",
+  "type": "module",
+  "main": "dist/server.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "dev": "tsx src/server.ts",
+    "demo": "tsx src/demo/simulate.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@tetherto/wdk": "1.0.0-beta.6",
+    "@tetherto/wdk-wallet-evm-erc-4337": "1.0.0-beta.5",
+    "@tetherto/wdk-protocol-swap-velora-evm": "1.0.0-beta.4",
+    "ethers": "^6.13.0",
+    "express": "^4.21.0",
+    "dotenv": "^16.4.0",
+    "uuid": "^10.0.0",
+    "winston": "^3.14.0",
+    "cors": "^2.8.5"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^22.0.0",
+    "@types/uuid": "^10.0.0",
+    "@types/cors": "^2.8.17",
+    "typescript": "^5.6.0",
+    "tsx": "^4.19.0"
+  }
+}
