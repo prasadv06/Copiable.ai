@@ -3,7 +3,7 @@
 /*  Home/Copytrade Tabs, MetaMask Connect, Data Polling        */
 /* ═══════════════════════════════════════════════════════════ */
 
-const API = '';
+const API = 'https://copiabel-backend.onrender.com';
 let state = {
     connectedAddress: null,
     wdkAddress: null,
