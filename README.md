@@ -36,17 +36,14 @@ Lead Trader trades WETH → USDt on Sepolia
 
 ```bash
 # 1. Clone and install
-cd WDK_Copy_Trade
+cd Copiable.ai
 npm install
 
 # 2. Configure environment
 cp .env.example .env
 # Edit .env with your Pimlico API key (optional)
 
-# 3. Run the demo simulation
-npm run demo
-
-# 4. Start the server + dashboard
+# 3. Start the server + dashboard
 npm run dev
 # Open http://localhost:3001
 ```
@@ -209,15 +206,6 @@ All agents produce **transparent reasoning logs** explaining every decision.
 3. **Transparent AI**: Every agent logs its reasoning — no black-box decisions
 4. **Real blockchain**: All balance queries and transactions on Ethereum Sepolia
 5. **MCP standard**: Tool names follow the wdk-mcp convention for interoperability
-
----
-
-## Known Limitations
-
-- Wallets need Sepolia ETH (from faucets) to execute real transactions
-- Risk scoring uses heuristic rules (production would use ML models)
-- Trade detection uses polling (production would use WebSocket subscriptions)
-- In-memory state (production would use a database)
 
 ---
 
